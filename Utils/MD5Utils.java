@@ -54,6 +54,28 @@ public class MD5Utils {
 
 
     /**
+     * SHA算法
+     * @param sourceStr
+     * @return
+     */
+    public static String encodeBySha(String sourceStr){
+        String resultStr = null;
+        if (sourceStr != null){
+            try {
+                MessageDigest sha = MessageDigest.getInstance("SHA");
+                sha.update(sourceStr.getBytes());
+                byte[] shaBytes = sha.digest();
+                resultStr = byteArrayToHexString(shaBytes);
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return resultStr;
+    }
+
+
+    /**
      * 转换字节数组为十六进制字符串
      * @param
      * @return    十六进制字符串
@@ -79,6 +101,9 @@ public class MD5Utils {
         int d2 = n % 16;
         return hexDigits[d1] + hexDigits[d2];
     }
+
+
+
 
 
 }
