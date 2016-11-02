@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.support.annotation.Nullable;
 
 import java.io.IOException;
 
@@ -20,7 +21,7 @@ import java.io.IOException;
  * 1.imageAbsolutePath          //根据Uri获取图片绝对路径
  * 2.realPathFromUri            //通过uri获取照片真实路径的另一总方式
  * 3.bitmapFromUri              //读取uri所在图片，返回bitmap
- *
+ * 4.resourceIdToUri            //将res文件中rescourceId转uri
  */
 public class UriUtils {
     /**
@@ -118,6 +119,16 @@ public class UriUtils {
             e.printStackTrace();
         }
         return bitmap;
+    }
+
+    /**
+     *  将res文件中rescourceId转uri
+     * @param packageName
+     * @param resourceId
+     * @return
+     */
+    public static Uri resourceIdToUri(@Nullable String packageName, int resourceId){
+        return  Uri.parse("android.resource://"+packageName+"/" +resourceId);
     }
 
 
